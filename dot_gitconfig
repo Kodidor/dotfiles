@@ -1,0 +1,25 @@
+[user]
+	email = isidor.karlsson@pm.me
+	name = Isidor
+
+[core]
+    editor = "$VISUAL"
+    excludesfile = ~/.gitignore_global
+
+[init]
+    defaultBranch = main
+
+[pull]
+    rebase = false
+
+[push]
+    autoSetupRemote = true
+
+[color]
+    ui = auto
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    lg = log --oneline --graph --decorate
