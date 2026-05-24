@@ -1,6 +1,13 @@
 [user]
     email = {{ .git.email | quote }}
     name = {{ .git.name | quote }}
+{{ if eq .profile "work" }}
+    email = work@company.com
+    name = Your Work Name
+{{ else }}
+	email = private@email.com
+	name = Isidor
+{{ end }}
 
 [core]
     editor = "$VISUAL"

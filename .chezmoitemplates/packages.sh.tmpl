@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -eu
+
+install_pkg() {
+    if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    DISTRO="${ID_LIKE:-} ${ID:-}"
+    fi
+
+    case "$DISTRO" in
+        *arch*)
+            sudo pacman -S --noconfirm "$@"
+            ;;
+
+        *debian*)
+            sudo apt update
+            sudo apt install -y "$@"
+            ;;
+
+        *fedora*)
+            sudo dnf install -y "$@"
+            ;;
+
+        *)
+            echo "Unsupported distro"
+            exit 1
+            ;;
+    esac
+}

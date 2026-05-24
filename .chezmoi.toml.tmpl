@@ -6,3 +6,7 @@
     [data.git]
         name = {{ $gitName | quote }}
         email = {{ $gitEmail | quote }}
+{{- $profile := promptStringOnce . "profile" "private/work" "private" -}}
+
+[data]
+    profile = {{ $profile | quote }}

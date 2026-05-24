@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -eu
+
+PROFILE="{{ .profile }}"
+OS="{{ .chezmoi.os }}"
+{{ template "packages.sh.tmpl" }}
+
+if [ "$PROFILE" = "work" ]; then
+    offline_install
+else
+
+    if [ "$OS" = "linux" ]; then
+        if [ -f /etc/os-release ]; then
+        . /etc/os-release
+        DISTRO="${ID_LIKE:-} ${ID:-}"
+        fi
+
+        install_pkg \
+            zsh \
+            fzf \
+            ripgrep \
+            tree
+
+        if [ -d "${ZSH:-$HOME/.oh-my-zsh}" ]; then
+            echo "Oh My Zsh already installed"
+        else
+
+            RUNZSH=no CHSH=no KEEP_ZSHRC=yes sh -c \
+                "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        fi
+    fi
+fi

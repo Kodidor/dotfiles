@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -eu
+
+if [ "{{ .chezmoi.os }}" != "linux" ]; then
+    exit 0
+fi
+if [ "{{ .profile }}" != "work" ]; then
+    exit 0
+fi
+
+if [ -f /etc/os-release ]; then
+. /etc/os-release
+DISTRO="${ID_LIKE:-} ${ID:-}"
+fi
+
+case "$DISTRO" in
+    *fedora*)
+        sudo dnf install -y 
+        ;;
+
+    *)
+        echo "Unsupported distro"
+        ;;
+esac
