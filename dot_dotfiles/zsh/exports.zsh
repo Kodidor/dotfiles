@@ -9,4 +9,4 @@ export EDITOR=$VISUAL
 export PATH="$HOME/bin:$PATH"
 
 # Personal
-export SSH_AUTH_SOCK=~/.bitwarden-ssh-agent.sock
+export SSH_AUTH_SOCK=/home/isidor/.ssh/proton-pass-agent.sock
