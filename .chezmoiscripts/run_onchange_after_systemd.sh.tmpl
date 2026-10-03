@@ -4,9 +4,18 @@ set -euo pipefail
 # Service hash:
 # {{ include "dot_config/systemd/user/proton-pass-ssh-agent.service" | sha256sum }}
 
-if ! command -v pass-cli >/dev/null 2>&1; then
+PASS_CLI="$HOME/.local/bin/pass-cli"
+
+if [ ! -x "$PASS_CLI" ]; then
     echo "Missing proton-pass-cli"
     exit 0
+fi
+
+# Authenticate while chezmoi is running in the user's terminal; the CLI
+# stores the session locally for the service to reuse on subsequent logins.
+if ! "$PASS_CLI" info >/dev/null 2>&1; then
+    echo "Proton Pass CLI login required. Complete the web login to continue."
+    "$PASS_CLI" login
 fi
 
 systemctl --user daemon-reload

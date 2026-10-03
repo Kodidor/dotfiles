@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eu
+set -euo pipefail
 
 OS="{{ .chezmoi.os }}"
 {{ template "packages.sh.tmpl" }}
@@ -11,10 +11,17 @@ if [ "$OS" = "linux" ]; then
     fi
 
     install_pkg \
+        curl \
         zsh \
         fzf \
         ripgrep \
         tree
+
+    if [ -x "$HOME/.local/bin/pass-cli" ]; then
+        echo "Proton Pass CLI already installed"
+    else
+        curl -fsSL https://proton.me/download/pass-cli/install.sh | bash
+    fi
 
     if [ -d "${ZSH:-$HOME/.oh-my-zsh}" ]; then
         echo "Oh My Zsh already installed"
