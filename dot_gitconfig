@@ -1,11 +1,6 @@
 [user]
-{{ if eq .profile "work" }}
-    email = work@company.com
-    name = Your Work Name
-{{ else }}
 	email = isidor.karlsson@pm.me
 	name = Isidor
-{{ end }}
 
 [core]
     editor = "$VISUAL"
