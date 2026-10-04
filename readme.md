@@ -3,7 +3,7 @@
 ## Getting started
 
 ```
-sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply $Kodidor
+sh -c "$(curl -fsLS https://get.chezmoi.io)" -- init --apply Kodidor
 ```
 or with chezmoi already installed
 ```

@@ -11,9 +11,8 @@ if [[ -f /etc/os-release ]]; then
   if [[ "$ID" == "arch" || "$ID_LIKE" == *"arch"* ]]; then
     alias rmpkg="sudo pacman -Rsn"
     alias cleanch="sudo pacman -Scc"
-    alias fixpacman="sudo rm /var/lib/pacman/db.lck"
     alias update="sudo pacman -Syu"
-    alias cleanup="sudo pacman -Rsn $(pacman -Qtdq)"
+    alias cleanup='sudo pacman -Rsn $(pacman -Qtdq)'
   elif [[ "$ID" == "ubuntu" || "$ID_LIKE" == *"debian"* ]]; then
     alias update='sudo apt update && sudo apt upgrade'
     alias cleanup="apt autoremove"

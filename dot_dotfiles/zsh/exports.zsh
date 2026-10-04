@@ -9,4 +9,4 @@ export EDITOR=$VISUAL
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # Personal
-export SSH_AUTH_SOCK="$HOME/.ssh/proton-pass-agent.sock"
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/proton-pass/ssh-agent.sock"

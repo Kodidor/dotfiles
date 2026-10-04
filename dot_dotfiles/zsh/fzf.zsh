@@ -17,9 +17,8 @@ if command -v bat >/dev/null 2>&1; then
 elif command -v batcat >/dev/null 2>&1; then
   BATCMD="batcat"
 fi
-if command -v bat >/dev/null 2>&1; then
-  export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always {}'"
-fi
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always {}'"
+
 if command -v tree >/dev/null 2>&1; then
   export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 fi
